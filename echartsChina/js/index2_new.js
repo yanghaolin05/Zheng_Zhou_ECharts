@@ -1,13 +1,9 @@
 $(function(){
-    console.log("加载更新后的index2.js文件 - 版本3 - " + new Date().toLocaleString());
+    console.log("加载更新后的index2_new.js文件 - " + new Date().toLocaleString());
     map();
 })
 
 function map(){
-    // 获取容器的宽高
-    var containerWidth = document.getElementById('main').offsetWidth;
-    var containerHeight = document.getElementById('main').offsetHeight;
-
     var myChart = echarts.init(document.getElementById('main'))
     var chinaGeoCoordMap = {
 		'哈尔滨': [126.535797, 45.802158],
@@ -1530,7 +1526,7 @@ function map(){
 				data: item[1].map(function(dataItem) {
 					// 过滤掉郑州，因为郑州作为中心点单独显示
 					if(dataItem[0].name !== '郑州') {
-						return {
+					return {
 						name: dataItem[0].name,
 						value: chinaGeoCoordMap[dataItem[0].name].concat([dataItem[0].value])
 					};
@@ -1545,7 +1541,7 @@ function map(){
 	series.push({
 				type: 'scatter',
 				coordinateSystem: 'geo',
-				zlevel: 3, // 提高层级，确保显示在最上层
+		zlevel: 3, // 提高层级，确保显示在最上层
 				rippleEffect: {
 					period: 4,
 					brushType: 'stroke',
@@ -1559,7 +1555,7 @@ function map(){
 						formatter: '{b}',
 						textStyle: {
 							color: "#0f0"
-						}
+}
 					},
 					emphasis: {
 						show: true,
@@ -1568,26 +1564,26 @@ function map(){
 				},
 				symbol: 'pin',
 				symbolSize: 50,
-				itemStyle: {
-					normal: {
-						color: '#f00'
-					}
+			itemStyle: {
+				normal: {
+				color: '#f00'
+			}
 				},
-				// 不受 visualMap 控制
-				visualMap: false,
-				// 明确设置为不受visualMap控制的系列
-				silent: true,
-				hoverAnimation: false,
-				data: [{
+		// 不受 visualMap 控制
+		visualMap: false,
+		// 明确设置为不受visualMap控制的系列
+		silent: true,
+		hoverAnimation: false,
+		data: [{
 			name: '郑州',
 			value: chinaGeoCoordMap['郑州'].concat([10]),
-					// 明确标记该数据项不受visualMap控制
-					itemStyle: {
-						normal: {
-							color: '#f00'
-						}
-					}
-				}],
+			// 明确标记该数据项不受visualMap控制
+			itemStyle: {
+				normal: {
+					color: '#f00'
+				}
+			}
+		}],
 	});
 
 	var option = {
@@ -1607,22 +1603,22 @@ function map(){
 
 				// 只有当params.seriesType为'effectScatter'时才显示数据值
 				if (params.seriesType === 'effectScatter') {
-				var value = params.value[params.seriesIndex + 1];
-				res = "<span style='color:#fff;'>" + name + "</span><br/>数据：" + value + "万";
+					var value = params.value[params.seriesIndex + 1];
+					res = "<span style='color:#fff;'>" + name + "</span><br/>数据：" + value + "万";
 				} else if (params.seriesType === 'scatter') {
 					// 对于中心点（郑州）
 					res = "<span style='color:#fff;'>" + name + "</span>";
 				} else {
 					// 对于迁徙线，不显示数据
 					return null;
-			}
+}
 
 				return res;
 			}
 		},
 		backgroundColor:"#013954",
 		visualMap: { //图例值控制
-			min: 0.5,
+			min: 0.05,
 			max: 60,
 			calculable: true,
 			show: true,
@@ -1631,7 +1627,10 @@ function map(){
 				color: '#fff'
 			},
 			// 控制迁徙线和城市点，但不控制郑州中心点
-			seriesIndex: [0, 1]
+			seriesIndex: [0, 1],
+			// 设置最小跳动值为0.05
+			precision: 2,
+			step: 0.05
 		},
 		geo: {
 			map: 'china',

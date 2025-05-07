@@ -10,9 +10,16 @@
     }
     html,body{
         width:100%; height: 100%;
+        overflow: hidden; /* 防止出现滚动条 */
     }
     #main{
         width:100%; height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     </style>
 </head>
@@ -22,6 +29,7 @@
     <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../js/echarts.min.js"></script>
     <script type="text/javascript" src="../map/js/china.js"></script>
-    <script type="text/javascript" src="js/index2.js"></script>
+    <script type="text/javascript" src="../map/js/province/zhengzhou.js"></script>
+    <script type="text/javascript" src="js/index2_new.js"></script>
 </body>
 </html>
